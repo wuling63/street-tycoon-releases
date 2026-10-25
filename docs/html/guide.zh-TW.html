@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>街角翻身記 遊戲說明</title>
+<style>
+:root { --bg: #f7f5f0; --fg: #23262b; --muted: #6b6f76; --accent: #c77a12; --card: #ffffff; --line: #e3ddd2; --code: #f0ebe1; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #14171c; --fg: #e4e7ec; --muted: #9aa3ad; --accent: #f0aa3c; --card: #1c2027; --line: #2c323b; --code: #232830; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.75 "Microsoft JhengHei UI", "Microsoft JhengHei", "Noto Sans TC", "PingFang TC", "Segoe UI", sans-serif; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 32px max(20px, env(safe-area-inset-left)) 80px; }
+header { display: flex; align-items: center; gap: 16px; padding: 8px 0 20px; border-bottom: 2px solid var(--accent); margin-bottom: 24px; }
+header img { width: 64px; height: 64px; border-radius: 14px; }
+header .t { font-size: 28px; font-weight: 700; letter-spacing: .02em; }
+header .s { color: var(--muted); font-size: 14px; }
+h1 { display: none; }
+h2 { font-size: 22px; margin: 44px 0 12px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--accent); }
+h3 { font-size: 18px; margin: 28px 0 8px; }
+a { color: var(--accent); }
+blockquote { margin: 0 0 20px; padding: 8px 14px; border-left: 4px solid var(--accent); background: var(--card); color: var(--muted); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; background: var(--card); border-radius: 8px; overflow: hidden; font-size: 15px; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+th { background: var(--code); font-weight: 600; }
+code { background: var(--code); padding: 1px 6px; border-radius: 4px; font-family: Consolas, "Cascadia Mono", monospace; font-size: 14px; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 3px 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+nav.toc { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; }
+.tbl { overflow-x: auto; }
+@media print { body { background: #fff; color: #000; } h2 { color: #000; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><img src="data:image/png;base64,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" alt=""><div><div class="t">街角翻身記 遊戲說明</div><div class="s">Street Tycoon・從露宿街頭到身價五千萬</div></div></header>
+<h1 id="_1">街角翻身記 遊戲說明</h1>
+<blockquote>
+<p>English version: <a href="guide.en.html">GUIDE.en.md</a></p>
+</blockquote>
+<h2 id="_2">目錄</h2>
+<ol>
+<li><a href="#1-遊戲簡介">遊戲簡介</a></li>
+<li><a href="#2-安裝與啟動">安裝與啟動</a></li>
+<li><a href="#3-開始新的人生">開始新的人生</a></li>
+<li><a href="#4-操作方式">操作方式</a></li>
+<li><a href="#5-畫面說明">畫面說明</a></li>
+<li><a href="#6-一天怎麼過">一天怎麼過</a></li>
+<li><a href="#7-活下去身體狀態">活下去：身體狀態</a></li>
+<li><a href="#8-六個章節與成長路線">六個章節與成長路線</a></li>
+<li><a href="#9-工作升學與證照">工作、升學與證照</a></li>
+<li><a href="#10-創業與商戰">創業與商戰</a></li>
+<li><a href="#11-理財銀行股市保險">理財：銀行、股市、保險</a></li>
+<li><a href="#12-生活">生活</a></li>
+<li><a href="#13-人生的風險">人生的風險</a></li>
+<li><a href="#14-灰色地帶與違法行為">灰色地帶與違法行為</a></li>
+<li><a href="#15-選舉與政治">選舉與政治</a></li>
+<li><a href="#16-年齡與結局">年齡與結局</a></li>
+<li><a href="#17-多人連線">多人連線</a></li>
+<li><a href="#18-設定語言音樂存檔">設定：語言、音樂、存檔</a></li>
+<li><a href="#19-新手攻略">新手攻略</a></li>
+<li><a href="#20-常見問題">常見問題</a></li>
+</ol>
+<hr />
+<h2 id="1">1. 遊戲簡介</h2>
+<p>二十七歲的阿哲在物流公司待了五年，公司突然宣布歇業，遣散費只撐得過兩次房租。今天早上，他背著一只背包站在捷運站出口，口袋裡只剩一千兩百元，手機也因為欠費停話了。</p>
+<p>你要帶著阿哲：</p>
+<ul>
+<li>先活下去，每天找東西吃、找地方睡；</li>
+<li>利用社會福利站穩腳步；</li>
+<li>學一技之長、找工作、租房子；</li>
+<li>看準景氣和新聞的變化開店創業；</li>
+<li>最後成為身價五千萬的大商人，或走出完全不同的人生。</li>
+</ul>
+<p>遊戲裡有一座可以自由走動的 3D 大都市，還有十個國家、十六種結局，可以區域網路連線多人遊玩，支援五種語言。</p>
+<h2 id="2">2. 安裝與啟動</h2>
+<p><strong>系統需求</strong>
+- Windows 10 或 11（64 位元）。
+- 支援 Vulkan 的顯示卡（近幾年的 NVIDIA、AMD、Intel 內顯都可以）。
+- 約 200 MB 硬碟空間。</p>
+<p><strong>安裝</strong>
+1. 到 <a href="https://github.com/wuling63/street-tycoon-releases/releases">Releases</a> 下載 <code>StreetTycoon_Setup_1.1.0.exe</code>。
+2. 雙擊安裝，不需要系統管理員權限。
+3. 如果 Windows 跳出「Windows 已保護您的電腦」，點「其他資訊 → 仍要執行」。安裝檔沒有數位簽章，所以會出現這個警告。
+4. 安裝完成後，從桌面或開始功能表的「街角翻身記」開啟遊戲。</p>
+<p><strong>解除安裝</strong>：在 Windows「設定 → 應用程式」找到「街角翻身記 Street Tycoon」。遊戲存檔不會被刪除。</p>
+<h2 id="3">3. 開始新的人生</h2>
+<p>開始畫面的按鈕：「繼續」「開始新的人生」「讀取存檔」「語言 Language」「多人連線」。</p>
+<p>開新遊戲依序選擇：</p>
+<ol>
+<li><strong>國家</strong>：台灣、日本、南韓、中國、美國、加拿大、英國、德國、法國、澳洲。各國的物價、薪水、貨幣、城市、交通和節慶都不同，人物和地名也會在地化。</li>
+<li><strong>難度</strong></li>
+</ol>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>難度</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>簡單</td>
+<td>開局現金兩倍，存款太低時社福每週加碼</td>
+</tr>
+<tr>
+<td>普通</td>
+<td>原本的設計</td>
+</tr>
+<tr>
+<td>困難</td>
+<td>房租每月多漲三成，意外和疾病更常發生</td>
+</tr>
+<tr>
+<td>地獄</td>
+<td>身無分文、背著一筆卡債開局，房租多漲五成</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="3">
+<li><strong>主角</strong>：選造型、姓名、暱稱，以及開局年齡（18 到 45 歲）。選女生的話，劇情裡的「他」會改成「她」。</li>
+</ol>
+<h2 id="4">4. 操作方式</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>滑鼠左鍵點建築</td>
+<td>走到那個地點</td>
+</tr>
+<tr>
+<td>下方的地點按鈕</td>
+<td>走到最近的那一家</td>
+</tr>
+<tr>
+<td>點地面或小地圖</td>
+<td>走到那裡</td>
+</tr>
+<tr>
+<td>方向鍵 / WASD</td>
+<td>直接走動</td>
+</tr>
+<tr>
+<td>滑鼠右鍵拖曳</td>
+<td>旋轉鏡頭</td>
+</tr>
+<tr>
+<td>滾輪</td>
+<td>縮放鏡頭</td>
+</tr>
+<tr>
+<td>Q / E</td>
+<td>左右轉向</td>
+</tr>
+<tr>
+<td>P</td>
+<td>打開手機</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>關閉視窗</td>
+</tr>
+</tbody>
+</table></div>
+<p>走路要花時間：每走一條街大約 10 分鐘。趕時間可以搭捷運或公車、租 YouBike，或叫計程車。</p>
+<h2 id="5">5. 畫面說明</h2>
+<ul>
+<li><strong>上方</strong>：</li>
+<li>天數、日期、城市，以及早上、中午、傍晚、深夜四個時段和時鐘；</li>
+<li>現金、存款、淨資產；</li>
+<li>「多人連線」「手機」「人生」「地圖」「選單」按鈕。</li>
+<li><strong>左側</strong>：</li>
+<li>飽足、體力、心情、健康、整潔；</li>
+<li>勞動、服務、電腦、烹飪、商業五種技能；</li>
+<li>年齡、住處、工作、信用分數、人脈等資料。</li>
+<li><strong>右側</strong>：小地圖、環境狀態、新聞預報、城市發展，以及日記（發生過的事都記在這裡）。</li>
+<li><strong>下方</strong>：你所在地點可以做的事。每張卡片會寫花費、要用掉幾個時段，以及做不到的原因。滑鼠停在卡片上可以看完整說明；按右下角的「收合」可以把面板縮小，讓 3D 城市露出來。</li>
+<li><strong>地點</strong>：除了社福中心、就業服務站、銀行等，還有醫院（看病、健康檢查、心理諮商）、警察局（報案追討詐騙款、自首、良民證）、地方法院（旁聽、債務協商）、健身房、寵物店、證券公司。</li>
+<li><strong>3D 城市</strong>：</li>
+<li>會有四季的變化：日本、韓國等地冬天下雪；三四月櫻花盛開；秋天楓紅。</li>
+<li>節慶依國家而不同，右側面板會顯示目前的節慶：<ul>
+<li>台灣、中國：農曆新年紅燈籠、中秋節金色燈籠。</li>
+<li>日本：新年和夏祭的紅白提燈（夏祭有煙火）、冬季藍白聖誕燈飾。</li>
+<li>韓國：설날、秋夕、佛誕燈會的彩色燈籠。</li>
+<li>美國、加拿大：獨立紀念日、加拿大日的煙火，萬聖節。</li>
+<li>英國：蓋伊・福克斯之夜煙火。德國：啤酒節、聖誕市集。法國：國慶日煙火。澳洲：國慶日煙火、夏天過聖誕。</li>
+<li>每個國家 12 月 31 日都有跨年煙火。</li>
+</ul>
+</li>
+<li>頭上有琥珀色箭頭的是你；</li>
+<li>建築上方的圓形小圖示代表地點用途（錢＝賺錢、床＝過夜、飯＝吃飯、助＝求助、學＝學習…）；</li>
+<li>有開店的話，你的店會掛上公司招牌，頭上有「★」標示。</li>
+</ul>
+<h2 id="6">6. 一天怎麼過</h2>
+<ul>
+<li>一天有<strong>早上、中午、傍晚、深夜</strong>四個時段。工作、上課、打工會用掉時段；吃東西、買東西通常不佔時段。</li>
+<li>有些事只在特定時段能做，例如夜班保全只在深夜，批發市場清晨進貨。</li>
+<li>時段用完，或按「結束今天，找地方過夜」，就要選今晚睡哪裡：</li>
+<li>公園長椅（免費但容易被偷、傷身體）</li>
+<li>收容中心、網咖、青年旅館</li>
+<li>租的房子、自己買的房子</li>
+<li>隔天早上會看到收據，列出昨天的收入、支出和發生的事。</li>
+<li>早上偶爾會有<strong>事件</strong>，例如生病、撿到皮夾、朋友找你、詐騙電話、對手出招。事件要選一個選項才會關掉，選擇會影響後面的發展。</li>
+</ul>
+<h2 id="7">7. 活下去：身體狀態</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>狀態</th>
+<th>太低的後果</th>
+<th>怎麼補</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>飽足</td>
+<td>傷健康、半夜胃痛</td>
+<td>吃東西：便利商店、美食街、食物銀行、物資包</td>
+</tr>
+<tr>
+<td>體力</td>
+<td>不能工作、上課</td>
+<td>睡覺、休息</td>
+</tr>
+<tr>
+<td>心情</td>
+<td>傷健康，可能憂鬱</td>
+<td>吃好一點、找社工、去廟口幫忙、養寵物、運動</td>
+</tr>
+<tr>
+<td>健康</td>
+<td>歸零會昏倒住院</td>
+<td>睡好、看醫生、運動</td>
+</tr>
+<tr>
+<td>整潔</td>
+<td>面試吃虧、傷健康</td>
+<td>洗澡（收容中心、網咖、租屋）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>衣服</strong>每年春秋各要買一次。衣服太舊會讓面試和見客戶吃虧。</li>
+<li>現金放身上過夜可能被偷，存進銀行就安全了。</li>
+</ul>
+<h2 id="8">8. 六個章節與成長路線</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>章節</th>
+<th>目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一、街頭求生</td>
+<td>撐過最初五天，並到社福中心找社工</td>
+</tr>
+<tr>
+<td>二、重新站起</td>
+<td>找到第一份工作，並租下一間雅房</td>
+</tr>
+<tr>
+<td>三、一技之長</td>
+<td>取得一張職訓證照或大學學位</td>
+</tr>
+<tr>
+<td>四、第一桶金</td>
+<td>開設第一個事業，淨資產達十萬</td>
+</tr>
+<tr>
+<td>五、乘勢而起</td>
+<td>淨資產達三百萬</td>
+</tr>
+<tr>
+<td>六、商海大亨</td>
+<td>淨資產達五千萬</td>
+</tr>
+</tbody>
+</table></div>
+<p>章節目標都是台幣金額，其他國家會換算成當地貨幣。</p>
+<p><strong>典型的翻身路線</strong>
+1. <strong>社福中心</strong>：找社工開個案，就能申請收容床位、急難救助、以工代賑、食物銀行與上課津貼。
+2. <strong>打工</strong>：就業服務站的臨時工、搬貨、資源回收；有手機的話可以用接案 App 跑外送。
+3. <strong>租屋</strong>：有地址才能投正職、開店、辦貸款。
+4. <strong>學技能</strong>：職訓中心上課考證照，或上大學讀科系（有就學貸款）。
+5. <strong>找好工作</strong>：一般職缺，或拿學位後進大公司，有升遷階梯。
+6. <strong>創業</strong>：在辦公室開店，從網拍小舖、夜市攤位開始，慢慢做到便當店、手搖飲、物流、貿易、連鎖超市。
+7. <strong>擴張</strong>：開分店、打商戰、管員工、上市。</p>
+<h2 id="9">9. 工作、升學與證照</h2>
+<ul>
+<li><strong>一般工作</strong>：在就業服務站應徵，連續三天沒去上班會被開除。</li>
+<li><strong>大學</strong>：可選醫學、法律、建築、資工、會計、教育、護理等科系。</li>
+<li>學費要自己賺，可以申請就學貸款。</li>
+<li>有夜間部，白天工作的人也能上課。</li>
+<li>每年兩次期末考，有題目可以作答，也可以讓系統依你準備的程度自動作答。</li>
+<li>被當要重修；連續兩學期一半以上科目不及格，會被二一退學；修業年限到了還沒修完就延畢。</li>
+<li>醫師、律師、建築師、會計師、教師、護理師要畢業後再考國考或執照。</li>
+<li>沒有相關學位，不能從事那個職業。</li>
+<li><strong>大公司</strong>：拿到學位後可以去企業總部應徵，薪水有升遷階梯。有前科的話，大公司不錄用。</li>
+<li><strong>職業證照</strong>（職訓中心）：廚師、堆高機、保全、導遊。考到之後可以做外燴廚師、堆高機司機、夜班保全、帶觀光團。</li>
+</ul>
+<h2 id="10">10. 創業與商戰</h2>
+<ul>
+<li><strong>開店</strong>：在「創業」地點開店，之後每天自動結算損益。「巡店」可以讓當天營收提高一成五。</li>
+<li><strong>環境與新聞</strong>：</li>
+<li>颱風、寒流、熱浪、疫情、觀光熱潮、物價上漲、景氣衰退、房市升溫等，都會影響各行業的生意。</li>
+<li>新聞預報會提前告訴你，先準備的人最賺。例如颱風前囤雨衣，過年前進禮盒。</li>
+<li><strong>商戰中心</strong>：</li>
+<li>每個行業都有 AI 對手，市佔率決定營收。</li>
+<li>可以打廣告、提議結盟、收購對手。盟友之間不打價格戰，但盟友也可能背叛。</li>
+<li><strong>惡意競爭</strong>（違法或不厚道）：網軍抹黑、商業間諜、挖角、賠本殺價、檢舉、收買供應商、破壞店面。</li>
+<li>被揭發會被告、罰款、商譽大跌，嚴重的會留前科。</li>
+<li>結怨越深，對手報復得越兇。</li>
+<li><strong>員工管理</strong>：</li>
+<li>每個行業可以設定低薪、行情價、高薪。士氣會影響營收。</li>
+<li>士氣太低會罷工，低薪會被勞檢罰款。</li>
+<li>教育訓練能提升服務；請專業店長可以防止監守自盜。</li>
+<li><strong>電腦大亨對手</strong>：三個 AI 也從街頭開始，個性分穩健、冒險、黑心。它們會開店跟你搶市場、找你合資，也可能投資失利或被抓。手機的「富豪榜」可以看排名。</li>
+<li><strong>黑道</strong>：店開到三家以上，角頭會上門收保護費。可以選擇付錢、報警、找另一派撐腰，或請保全。</li>
+</ul>
+<h2 id="11">11. 理財：銀行、股市、保險</h2>
+<ul>
+<li><strong>銀行</strong>：</li>
+<li>存款不會在夜裡被偷。</li>
+<li>可以申請青年創業貸款和擔保貸款，利息每三十天扣一次。</li>
+<li>水電、健保、稅金繳不出來會記成欠款，信用分數會下降。</li>
+<li><strong>股市與投資</strong>（在銀行開證券戶，需要固定地址）：</li>
+<li>可以買賣 8 檔股票、大盤指數基金，以及波動很大的「街角幣」加密貨幣。</li>
+<li>新聞會影響股價：疫情讓生技股大漲，颱風打擊航運和觀光。</li>
+<li>公司夠大可以<strong>上市</strong>募資。上市後持股低於五成，可能被惡意收購。</li>
+<li><strong>包租公</strong>（房屋仲介）：</li>
+<li>買套房、公寓或透天厝出租，每月 5 日收租。租金訂得越高，房客越難找、也越容易拖欠。</li>
+<li>會遇到欠租、漏水、房客破壞。偶爾會有六五折的法拍屋，但可能有前屋主賴著不走。</li>
+<li>房價很高時，房市泡沫可能破裂。</li>
+<li><strong>海外擴張</strong>（創業處）：國內有 10 家店、商業能力 55 以後，可以到其他國家開分公司。獲利依匯率換算，會遇到貨幣貶值、貿易戰關稅和當地法規。</li>
+<li><strong>精品與奢侈品</strong>（服飾店）：</li>
+<li>名錶、名畫、超跑、遊艇、山頂豪宅會提升名聲、心情、人脈和粉絲。</li>
+<li>要付保養費；名聲越高，越可能被綁架勒索。請保鑣就不會被綁架。</li>
+<li>名畫的價格會漲跌。</li>
+<li><strong>年度報稅</strong>：</li>
+<li>每年五月申報去年的所得，稅率分級。</li>
+<li>可以自己照實申報，或請會計師合法節稅；也可以少報，但之後可能被國稅局查帳。</li>
+<li><strong>保險</strong>：</li>
+<li>商業火險：天災造成的店面損失理賠九成。</li>
+<li>住宅地震險：自宅受損全額理賠。</li>
+<li>醫療險：看病只付三成。</li>
+<li>意外險：車禍住院時理賠。</li>
+</ul>
+<h2 id="12">12. 生活</h2>
+<ul>
+<li><strong>吃</strong>：從便利商店的便當到高級餐廳都有，價位不同。</li>
+<li><strong>聚餐</strong>：可以約朋友聚餐，選 AA、請客或讓朋友請。</li>
+<li><strong>寵物</strong>：在街頭收養流浪貓狗。牠們會讓你心情好、不容易憂鬱，但每天要飼料錢，生病要看獸醫。房東可能不准養。狗還會幫你嚇跑小偷。</li>
+<li><strong>健身與外貌</strong>：晨跑、上健身房、剪頭髮做造型。外貌和魅力會提高面試錄取、結盟成功率、選舉支持度和網紅成長。</li>
+<li><strong>嗜好</strong>：</li>
+<li>吉他：練好可以在車站街頭演唱。</li>
+<li>攝影：練好可以接婚禮攝影。</li>
+<li>烹飪：夠好可以參加料理比賽。</li>
+<li><strong>社群網紅</strong>：</li>
+<li>每天可以發一支短影音，偶爾會爆紅；深夜可以去網咖直播收斗內。</li>
+<li>粉絲多了會有業配找上門，但業配的產品可能有問題。</li>
+<li>有黑歷史的話可能被炎上。</li>
+<li><strong>感情與家庭</strong>：可能遇到伴侶、結婚、生小孩，也要照顧生病的父母。</li>
+<li><strong>養育子女</strong>（人生面板 →「子女」，或街頭公園的「陪孩子」）：</li>
+<li>每個孩子有自己的名字、天分（做生意、讀書、藝術、運動）、學業和跟你的感情。</li>
+<li>遊戲裡孩子長大的速度是現實的 4 倍，會經過嬰兒、幼兒園、國小、中學、大學，最後成年。</li>
+<li>陪伴讓感情變好，補習提高學業，才藝班培養天分。感情太差的孩子，中學時可能會叛逆。</li>
+<li>成年時要決定人生方向：接手家業、追自己的夢想，或拿一筆錢去闖。</li>
+<li><strong>小遊戲</strong>：</li>
+<li>親自騎車跑外送（街頭公園，需要機車）：三線道閃避來車，撐越久送越多單。</li>
+<li>料理擂台（美食街，每 7 天一次）：游標停在火候正中間時按空白鍵。</li>
+<li>地下賭場・骰寶（街頭公園，傍晚以後）：押大押小，違法，可能被臨檢。</li>
+<li>盯盤當沖（證券公司或股市面板）：30 秒內低買高賣，三倍槓桿。</li>
+<li><strong>機車</strong>：在批發市場買二手機車、到職訓中心考駕照之後，可以騎車跑外送，接案時趕路也比較快。</li>
+</ul>
+<h2 id="13">13. 人生的風險</h2>
+<ul>
+<li><strong>意外與生病</strong>：流感、車禍、食物中毒、牙痛、疫情隔離。健康歸零會住院。</li>
+<li><strong>詐騙</strong>：</li>
+<li>假包裹簡訊、假檢警、AI 換臉的親友借錢、假投資群組、愛情詐騙、求職詐騙、假房東、ATM 解除分期、銀行盜刷電話。</li>
+<li>不確定的時候，選「打 165 查證」或「掛掉，自己打官方電話」，通常最安全。</li>
+<li>防詐意識越高，事件文字裡越容易看到破綻提醒。</li>
+<li><strong>天災</strong>：</li>
+<li>颱風可能引發淹水，3D 城市會真的淹水。</li>
+<li>也可能發生強烈地震（畫面會搖晃）或大停電（路燈全暗）。</li>
+<li>有保險損失會少很多。</li>
+<li><strong>城市發展</strong>：</li>
+<li>捷運通車會讓房價和人潮上升；科學園區進駐會讓生意變好、房租變貴。</li>
+<li>都市更新可能讓你被迫搬家，有房的人則可能拿到高額收購。</li>
+<li>購物中心開幕或舊商圈沒落，都會讓小店生意變差。</li>
+</ul>
+<h2 id="14">14. 灰色地帶與違法行為</h2>
+<p>遊戲允許你走偏路，但後果很真實。</p>
+<ul>
+<li><strong>偷竊與搶劫</strong>：順手牽羊、扒竊、闖空門、持刀搶劫。</li>
+<li>行動卡片會用紅字顯示被抓機率。</li>
+<li>警方注意度越高、前科越多，越容易被抓。</li>
+<li><strong>地下經濟</strong>：賣仿冒品、地下匯兌、在店面後面開地下賭場。</li>
+<li><strong>交通違規</strong>：騎車闖紅燈、超速可以多跑幾單，但會吃罰單、被記點。記滿 12 點吊扣駕照；無照駕駛會被拖吊；酒駕會留前科。</li>
+<li><strong>貪污</strong>：賄賂官員拿標案、打點稽查、關說修法。每次都會累積被廉政署盯上的風險。</li>
+<li><strong>法院</strong>：被抓或被告都要出庭，可以選擇：</li>
+<li>認罪協商：從輕量刑，初犯可能緩刑。</li>
+<li>公設辯護人：免費，但勝訴率低。</li>
+<li>一般律師：收費中等，勝訴率中等。</li>
+<li>名律師團：很貴，勝訴率最高，但會扣道德。</li>
+<li>和解：賠錢不留紀錄，但重罪不能和解。</li>
+<li><strong>前科</strong>：前科累積到 4 筆，或出獄後再犯重罪，就是「鐵窗」結局。有前科也進不了大公司、不能參選。</li>
+</ul>
+<h2 id="15">15. 選舉與政治</h2>
+<ul>
+<li>到社福中心的「競選總部」登記參選議員。需要五百萬經費、道德不能是負的、人脈 40，而且不能有前科。</li>
+<li>投票前有三十天的競選期：</li>
+<li>街頭拜票、辦造勢晚會、買廣告；</li>
+<li>抹黑對手：可能被告誹謗；</li>
+<li>買票：重罪，被抓就當選無效、坐牢。</li>
+<li>中途會有電視辯論，也會有人送上政治獻金。</li>
+<li>投票日得票率過半就當選，開票有誤差，對手每天也在拉票。</li>
+<li>當選議員後每月領薪水，可以在議會提案。之後參選市長，選上就是「為民喉舌」結局。</li>
+</ul>
+<h2 id="16">16. 年齡與結局</h2>
+<ul>
+<li>每過一年長一歲。45 歲以後體力恢復變慢、健康會慢慢下降，常運動的人老得比較慢。</li>
+<li><strong>60 歲退休，遊戲結束。</strong></li>
+<li>淨資產達到五千萬後，會出現「人生下半場」，讓你選擇最後一章：公司上市、成立基金會、參選、交棒給接班人。</li>
+<li>結局共 16 種：</li>
+</ul>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>類型</th>
+<th>結局</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>好結局</td>
+<td>商業帝國、慈善大亨、名醫、大律師、執行長、教育家、敲鐘、為民喉舌、傳承、富足退休、平凡退休</td>
+</tr>
+<tr>
+<td>壞結局</td>
+<td>黑心大亨、鐵窗、重回街頭、過勞倒下、晚景淒涼</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>看過的結局會收藏在「人生」面板，跨遊戲保留。</li>
+<li>另外有 27 個成就，在「選單 → 成就」查看。</li>
+</ul>
+<h2 id="17">17. 多人連線</h2>
+<ul>
+<li>同一個區域網路（同一台路由器或 Wi-Fi）的朋友可以一起玩。</li>
+<li>一人按「多人連線 → 建立房間（當主機）」，畫面會顯示主機的 IP；其他人輸入這個 IP 後按「加入」。每個人過自己的人生，在同一座城市裡會看到彼此。</li>
+<li>可以互相做的事：</li>
+<li>借錢給別人、催債、提告，對方也可以賴帳。</li>
+<li>對別人的公司出手：網軍抹黑、挖角、濫訴、破壞店面。被揭發的話要賠錢。</li>
+<li>提議合資，120 天內每天分紅。</li>
+<li>「玩家與借貸」面板有依淨資產排序的排行榜。</li>
+<li>現金和存款都沒了而且資不抵債，就會倒閉，欠別人的錢會變成壞帳。</li>
+</ul>
+<h2 id="18">18. 設定：語言、音樂、存檔</h2>
+<ul>
+<li><strong>語言</strong>：繁體中文、简体中文、English、日本語、한국어，在開始畫面或選單的「語言 Language」切換。</li>
+<li><strong>音量</strong>（選單 → 音量）：</li>
+<li>可以分別調整主音量、音樂、環境音、音效，也可以靜音。</li>
+<li>有 11 首約 10 分鐘的背景音樂，播放模式可選「依情境自動」「指定曲目」「隨機播放」。</li>
+<li><strong>存檔</strong>：</li>
+<li>遊戲隨時自動存檔。</li>
+<li>另外有三個存檔欄位：選單 → 存檔／讀檔，例如在冒險之前先存一份。</li>
+<li><strong>手機</strong>（按 P）：接案、股市、銀行、社群、新聞、財務報表、富豪榜、叫車、地圖、人生、成就、防詐，都整合在這裡。</li>
+<li><strong>設定</strong>（選單 → 設定）：</li>
+<li>視窗或全螢幕、視窗大小（1280×720／1600×900／1920×1080）、介面大小。</li>
+<li>畫質分低、中、高。電腦跑不順時選「低」，會關掉陰影和特效，路上的行人也會變少。</li>
+<li><strong>新手教學</strong>：開新遊戲時，畫面上方會出現教學提示，帶你走完第一天。目的地的按鈕會發亮，地圖上也有光柱指引。可以隨時跳過，也可以在設定裡重新開始或關閉。</li>
+</ul>
+<h2 id="19">19. 新手攻略</h2>
+<ol>
+<li><strong>第一天先去社福中心</strong>找社工開個案，收容床位、食物銀行、急難救助都靠它。</li>
+<li><strong>錢存銀行</strong>：睡公園時現金很容易被偷。</li>
+<li><strong>先打工存錢，盡快租屋</strong>：有地址才能投正職、開店、貸款。</li>
+<li><strong>買一支二手手機</strong>（批發市場），就能用接案 App 跑外送。</li>
+<li><strong>證照或大學二選一</strong>：證照快，學位能進大公司、當專業人士。白天工作的人可以讀夜間部。</li>
+<li><strong>多看新聞預報</strong>：颱風前囤雨衣，疫情前囤口罩，過年中秋前進禮盒。</li>
+<li><strong>第一家店從便宜的開始</strong>：網拍小舖、夜市攤位風險低，商業能力越高，營收越好。</li>
+<li><strong>員工薪水別壓太低</strong>：省下的錢常常不夠付罷工和勞檢罰款。</li>
+<li><strong>買保險</strong>：店多了之後，一次淹水或地震就可能虧掉好幾個月的利潤。</li>
+<li><strong>詐騙一律查證</strong>：要你轉帳、買點數、給驗證碼的，都先掛掉再說。</li>
+<li><strong>注意年齡</strong>：60 歲遊戲就結束了，年輕開局可以奮鬥比較久。</li>
+</ol>
+<h2 id="20">20. 常見問題</h2>
+<p><strong>安裝時 Windows 說「已保護您的電腦」？</strong>
+安裝檔沒有數位簽章才會這樣。點「其他資訊 → 仍要執行」即可。</p>
+<p><strong>畫面一片黑或打不開？</strong>
+請更新顯示卡驅動程式。遊戲使用 Vulkan 繪圖，非常舊的顯示卡可能不支援。</p>
+<p><strong>存檔在哪裡？</strong>
+<code>%APPDATA%\Godot\app_userdata\街角翻身記\</code>。解除安裝不會刪除存檔。</p>
+<p><strong>切換語言後還看到中文？</strong>
+極少數動態組合出來的句子可能還沒有翻譯，不影響遊玩。</p>
+<p><strong>可以做 MOD 嗎？</strong>
+目前原始碼不公開，暫時不支援 MOD。</p>
+</div>
+</body>
+</html>
