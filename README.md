@@ -9,6 +9,7 @@ From sleeping on the street to a NT$50 million fortune — a 3D life-sim about g
 
 <p align="center">
 <a href="https://github.com/wuling63/street-tycoon-releases/releases/latest"><b>⬇ 下載最新版 Download the latest version</b></a> ·
+<a href="https://wuling63.itch.io/street-tycoon">itch.io</a> ·
 <a href="docs/GUIDE.zh-TW.md">遊戲說明（中文）</a> ·
 <a href="docs/GUIDE.en.md">Player Guide (English)</a>
 </p>
@@ -22,7 +23,7 @@ This repository hosts downloads and player guides only; it does not contain the 
 
 ## 下載 Download
 
-到 [Releases](https://github.com/wuling63/street-tycoon-releases/releases/latest) 下載你的平台的檔案：
+到 [Releases](https://github.com/wuling63/street-tycoon-releases/releases/latest) 或 [itch.io](https://wuling63.itch.io/street-tycoon) 下載你的平台的檔案：
 Get the file for your platform from [Releases](https://github.com/wuling63/street-tycoon-releases/releases/latest):
 
 | 平台 Platform | 檔案 File | 安裝 How to install |
